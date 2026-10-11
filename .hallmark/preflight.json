@@ -1,0 +1,10 @@
+{
+  "scanned": "2026-10-09",
+  "fontStack": "Geist (body) + Instrument Serif (display) + JetBrains Mono (labels), loaded via <link> in index.html",
+  "palette": "OKLCH custom properties in tokens.css — custom \"acid pop\" world tokens (midnight acid ↔ butter acid), discrete swap at html[data-world=day]",
+  "motion": "no motion library — hand-rolled rAF scroll engine (src/story.js) + CSS transitions",
+  "spacing": "4pt --space-* scale (tokens.css)",
+  "framework": "Vite 8 + React 19 + Tailwind v4 plugin (tailwind installed but unused in CSS — kept that way)",
+  "preserve": ["font stack", "palette tokens", "spacing scale", "Tailwind-unused stance"],
+  "introduce": ["macrostructure Narrative Workflow (11 numbered chapters)", "nav N5 floating pill", "footer Ft5 statement", "slop-test gates", "night-day world system", "thread rail apparatus"]
+}
