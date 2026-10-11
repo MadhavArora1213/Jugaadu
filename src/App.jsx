@@ -1,4 +1,4 @@
-import './App.css'
+﻿import './App.css'
 
 const NAV_LINKS = ['Work', 'Pillars', 'Process', 'About']
 
@@ -90,11 +90,11 @@ function App() {
             </div>
 
             <div className="stack">
-              {SLABS.map((slab, i) => (
+              {SLABS.map((slab) => (
                 <div
                   key={slab.pillar}
                   className={`slab slab--${slab.pillar}`}
-                  style={{ '--y': slab.offset, '--s': slab.size, '--i': i }}
+                  style={{ '--y': slab.offset, '--s': slab.size }}
                 >
                   <div className="slab-face" />
                 </div>

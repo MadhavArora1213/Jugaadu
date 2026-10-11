@@ -1,4 +1,4 @@
-/* Hallmark · v1.2.0 · hero-only build
+﻿/* Hallmark · v1.2.0 · hero-only build
  * Hallmark · pre-emit critique: P5 H4 E5 S4 R5 V5
  * genre: editorial · scope: homepage hero section (page macrostructure deferred)
  * structure studied from reference (Wikala ad-agency hero): floating rounded card
@@ -386,6 +386,8 @@ body {
   border-left: 4px solid var(--pc);
   border-radius: 12px;
   box-shadow: var(--shadow-pcard);
+  --bob-from: rotate(var(--r)) translateY(-6px);
+  --bob-to: rotate(var(--r)) translateY(6px);
   transform: rotate(var(--r));
   animation:
     fade-in 640ms var(--ease-out) calc(700ms + var(--i) * 90ms) both,
@@ -494,11 +496,6 @@ body {
 }
 
 /* cards keep their rotation while bobbing */
-.pcard {
-  --bob-from: rotate(var(--r)) translateY(-6px);
-  --bob-to: rotate(var(--r)) translateY(6px);
-}
-
 @keyframes drift-float {
   from {
     transform: var(--bob-from, translateY(-7px));
