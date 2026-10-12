@@ -1,3 +1,12 @@
 *, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; overflow-x: clip; }
-body { background: #D5D0D8; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  padding: clamp(0.5rem, 1.6vw, 1.5rem);
+  background: var(--color-backdrop, #D8CCBB);
+  font-family: var(--font-body, system-ui, sans-serif);
+  color: var(--color-body, #1a1a1a);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; }

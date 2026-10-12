@@ -1,37 +1,47 @@
-/* Hallmark · v1.2.0 · re-theme to brand board (user brief: "this is our color
- *   theme — create like that shown in the image")
- * genre: editorial (prev atmospheric) · macrostructure: Narrative Workflow (kept)
- * palette: the Jugaadu brand board — 7 named swatches, warm Indian context
- *   terracotta #B6523C · brass #D4A373 · deep teal #0F3D3A · sand #EDE6DB
- *   sage #8AAE78 · indigo #4B6B8A · charcoal #1A1A1A
- * world system (kept, re-mapped):
- *   night = deep teal paper + brass accent  ↔  day = sand paper + terracotta accent
- *   discrete swap at t=0.5 through the .shift seams (story.js unchanged)
- * pillar accents (the image's five-pillar colour assignment):
- *   think→terracotta · venture→brass · build→deep teal · modernize→indigo · grow→sage
- *   deepened for day paper, lifted for night paper — every pair ≥ 4.5:1 on both
- *   paper and paper-2 (verified: min 4.65 night think on paper-2)
- * typography: Fraunces (display, warm chunky serif) + Kalam (script, Indian
- *   handwriting — "Ideas to Impact.") + Geist (body) + JetBrains Mono (labels)
- */
+/* ── Jugaadu design tokens ───────────────────────────────────────────────
+ * Source of truth: the official Jugaadu Brand Color System.
+ *
+ * Core brand
+ *   terracotta clay #B5523C · brass gold #D4A373 · deep teal #0F3D3A
+ *   sand #EDE6DB · sage green #8AAE78 · indigo slate #466B8A · charcoal #1A1A1A
+ * Supporting
+ *   warm ivory #F5F0E7 · warm stone #D8CCBB · muted grey #6B6B63
+ *   white #FFFFFF · soft sage #C7D6C0 · deep forest #12302F
+ *
+ * Rules encoded here
+ *   1  ivory/sand is the page background
+ *   2  charcoal carries headings, body, navigation and primary CTAs
+ *   3  deep teal is the technology / dark-panel colour, and the Build pillar
+ *   4  terracotta is highlight, creative accent, Think With You
+ *   5  brass is opportunity highlight, Venture Build
+ *   6  indigo is trust, Modernize
+ *   7  sage is grow, people, community, sustainability
+ *   8  warm stone + muted grey are borders, dividers, secondary text
+ *   9  white is cards, contrast, negative space — use sparingly
+ *  10  restrained editorial: no section uses every colour at once
+ *
+ * style: sticker-led editorial — heavy display type, hard-edged buttons,
+ *   scalloped stamp cards, paper grain, hand-drawn detail
+ * typography: Bricolage Grotesque (display) · Geist (body) ·
+ *   JetBrains Mono (labels) · Kalam (script)
+ * ───────────────────────────────────────────────────────────────────────── */
+
 :root {
-  /* fonts — four roles, the brand stack */
-  --font-display: "Fraunces", "Instrument Serif", ui-serif, Georgia, serif;
+  /* fonts — four roles */
+  --font-display: "Bricolage Grotesque", "Archivo Black", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "JetBrains Mono", ui-monospace, monospace;
+  --font-label: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
   --font-script: "Kalam", "Segoe Script", cursive;
 
-  /* five sizes + tagline */
-  --text-display: clamp(3.25rem, 8vw, 6.5rem);
-  --text-display-s: clamp(2.25rem, 4.5vw, 4rem);
-  --text-md: clamp(1.15rem, 0.9rem + 1vw, 1.5rem);
-  --text-base: clamp(1rem, 0.97rem + 0.2vw, 1.0625rem);
-  --text-tagline: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
-  --label: 0.6875rem;
+  /* type scale */
+  --text-display: clamp(2.5rem, 7.6vw, 5.9rem);
+  --text-h2: clamp(2rem, 5.4vw, 4rem);
+  --text-h3: clamp(1.35rem, 2.4vw, 1.9rem);
+  --text-sub: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
+  --text-base: clamp(0.95rem, 0.92rem + 0.18vw, 1.0625rem);
+  --text-label: 0.7rem;
 
   /* spacing — 4pt scale */
-  --space-3xs: 0.125rem;
-  --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
   --space-md: 1rem;
@@ -39,74 +49,106 @@
   --space-xl: 2.5rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
-  --space-4xl: 9rem;
-
-  /* layout */
-  --page-gutter: clamp(1rem, 4vw, 3.5rem);
-  --nav-h: 58px; /* sticky nav height — the one-screen hero measures against it */
-
-  /* z scale */
-  --z-base: 1;
-  --z-raised: 10;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-modal: 400;
-  --z-grain: 500;
 
   /* motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 120ms;
-  --dur-short: 220ms;
-  --dur-long: 420ms;
+  --dur-micro: 140ms;
+  --dur-short: 260ms;
 
-  /* ---- brand system — the seven board swatches, world-invariant ---- */
-  --color-terracotta: oklch(56.1% 0.135 33.8); /* #B6523C */
-  --color-brass: oklch(75% 0.086 65.3); /* #D4A373 */
-  --color-teal: oklch(32.9% 0.049 188.8); /* #0F3D3A */
-  --color-sand: oklch(92.7% 0.017 79.3); /* #EDE6DB */
-  --color-sage: oklch(71% 0.085 135.5); /* #8AAE78 */
-  --color-indigo: oklch(51.6% 0.062 248.3); /* #4B6B8A */
-  --color-charcoal: oklch(21.8% 0 89.9); /* #1A1A1A */
+  /* ══ 1. CORE BRAND — never redefine these locally ══ */
+  --brand-terracotta: #b5523c;
+  --brand-brass: #d4a373;
+  --brand-teal: #0f3d3a;
+  --brand-sand: #ede6db;
+  --brand-sage: #8aae78;
+  --brand-indigo: #466b8a;
+  --brand-charcoal: #1a1a1a;
 
-  /* ---- night world — deep teal paper + brass accent (default) ---- */
-  --color-paper: oklch(30.7% 0.045 186);
-  --color-paper-2: oklch(36.1% 0.052 187.5);
-  --color-ink: oklch(92.7% 0.017 79.3);
-  --color-ink-2: oklch(86.9% 0.018 170);
-  --color-muted: oklch(78.5% 0.028 170);
-  --color-blueprint: oklch(92.7% 0.017 79.3 / 0.06);
-  --color-accent: oklch(75% 0.086 65.3);
-  --color-accent-ink: oklch(21.8% 0 89.9);
-  --color-paper-emit: oklch(75% 0.086 65.3 / 0.08);
-  --grain-opacity: 0.05;
+  /* ══ 2. SUPPORTING ══ */
+  --brand-ivory: #f5f0e7;   /* primary background */
+  --brand-stone: #d8ccbb;   /* borders, dividers, understated fills */
+  --brand-grey: #6b6b63;    /* secondary text */
+  --brand-white: #ffffff;   /* cards, contrast, negative space */
+  --brand-soft-sage: #c7d6c0;
+  --brand-forest: #12302f;  /* deeper panel, when teal and teal would collide */
 
-  /* night pillar accents — lifted for the teal paper */
-  --pillar-think: oklch(75.5% 0.105 39.2); /* #E9987D terracotta-light */
-  --pillar-venture: oklch(75% 0.086 65.3); /* #D4A373 brass */
-  --pillar-build: oklch(75.8% 0.053 182.3); /* #8BBCB3 teal-light */
-  --pillar-modernize: oklch(76% 0.042 248.4); /* #9DB4CB indigo-light */
-  --pillar-grow: oklch(78.8% 0.067 134.8); /* #A8C499 sage-light */
-}
+  /* ══ SEMANTIC · BACKGROUNDS ══ */
+  --bg-page: var(--brand-ivory);      /* rule 1 — the sheet */
+  --bg-sand: var(--brand-sand);       /* rule 1 — alternating band */
+  --bg-card: var(--brand-white);      /* rule 9 — cards, sparingly */
+  --bg-panel: var(--brand-teal);      /* rule 3 — dark visual panel */
+  --bg-panel-deep: var(--brand-forest);
+  --bg-subtle: var(--brand-stone);    /* rule 8 — understated fill */
+  --bg-backdrop: var(--brand-stone);  /* the desk the page sits on */
 
-/* ---- day world — sand paper + terracotta accent, discrete swap ---- */
-html[data-world="day"] {
-  --color-paper: oklch(92.7% 0.017 79.3);
-  --color-paper-2: oklch(89.2% 0.024 79.7);
-  --color-ink: oklch(21.8% 0 89.9);
-  --color-ink-2: oklch(34.9% 0.011 84.6);
-  --color-muted: oklch(51.1% 0.023 77.1);
-  --color-blueprint: oklch(21.8% 0 89.9 / 0.07);
-  --color-accent: oklch(48.5% 0.123 34.7); /* #98402B text-safe terracotta */
-  --color-accent-ink: oklch(92.7% 0.017 79.3);
-  --color-paper-emit: oklch(48.5% 0.123 34.7 / 0.07);
-  --grain-opacity: 0.04;
+  /* ══ SEMANTIC · FOREGROUNDS ══ */
+  --fg-heading: var(--brand-charcoal);  /* rule 2 */
+  --fg-body: var(--brand-charcoal);     /* rule 2 */
+  --fg-muted: var(--brand-grey);        /* rule 8 */
+  --fg-on-dark: var(--brand-ivory);
+  --fg-on-accent: var(--brand-white);
 
-  /* day pillar accents — deepened for the sand paper */
-  --pillar-think: oklch(47.3% 0.121 34.5); /* #933D29 terracotta-deep */
-  --pillar-venture: oklch(46.5% 0.084 63); /* #7A4E22 brass-deep */
-  --pillar-build: oklch(32.9% 0.049 188.8); /* #0F3D3A deep teal */
-  --pillar-modernize: oklch(45.7% 0.056 248.2); /* #3E5A75 indigo-deep */
-  --pillar-grow: oklch(45.1% 0.113 125.9); /* #46603 sage-deep */
+  /* ══ SEMANTIC · BORDERS · DIVIDERS ══ */
+  --border-strong: var(--brand-charcoal);   /* hard editorial rules */
+  --border-subtle: var(--brand-stone);      /* rule 8 */
+  --divider: var(--brand-stone);            /* rule 8 */
+  --border-on-dark: rgba(245, 240, 231, 0.24);
+  --hairline: rgba(26, 26, 26, 0.18);
+  --grid-line: rgba(26, 26, 26, 0.055);     /* graph-paper */
+  --grid-size: 26px;
+
+  /* ══ SEMANTIC · ACTIONS ══ */
+  --btn-primary-bg: var(--brand-charcoal);  /* rule 2 — primary CTA */
+  --btn-primary-fg: var(--brand-ivory);
+  --btn-accent-bg: var(--brand-terracotta); /* rule 4 */
+  --btn-accent-fg: var(--brand-white);
+  --focus-ring: var(--brand-terracotta);    /* ≥3:1 on ivory and on teal */
+  --focus-halo: var(--brand-ivory);
+
+  /* ══ SEMANTIC · HIGHLIGHTS ══ */
+  --accent: var(--brand-terracotta);        /* rule 4 */
+  --accent-deep: #98402b;                   /* pressed / shade of terracotta */
+  --highlight: var(--brand-brass);          /* rule 5 — opportunity */
+
+  /* ══ SEMANTIC · PILLAR ACCENTS ══ — each pillar keeps its own identity */
+  --pillar-think: var(--brand-terracotta);     /* sand + terracotta */
+  --pillar-venture: var(--brand-brass);        /* brass + sand      */
+  --pillar-build: var(--brand-teal);           /* deep teal + sand  */
+  --pillar-modernize: var(--brand-indigo);     /* indigo + white    */
+  --pillar-grow: var(--brand-sage);            /* sage + sand       */
+
+  /* their paper grounds, for when a pillar sits on a light sheet */
+  --pillar-think-bg: var(--brand-sand);
+  --pillar-venture-bg: var(--brand-sand);
+  --pillar-build-bg: var(--brand-sand);
+  --pillar-modernize-bg: var(--brand-white);
+  --pillar-grow-bg: var(--brand-sand);
+
+  /* ══ 3. DERIVED · kept for the existing --color-* call sites ══ */
+  --color-backdrop: var(--bg-backdrop);
+  --color-paper: var(--bg-page);
+  --color-paper-2: var(--brand-sand);
+  --color-ink: var(--fg-heading);
+  --color-deep: var(--bg-panel);
+  --color-body: var(--fg-body);
+  --color-muted: var(--fg-muted);
+  --color-hairline: var(--hairline);
+
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-on-accent: var(--fg-on-accent);
+  --color-on-dark: var(--fg-on-dark);
+
+  /* graph-paper grid */
+  --grid-line: rgba(26, 26, 26, 0.055);
+  --grid-size: 26px;
+
+  /* the page gutter — used by every section and for full-bleed breakouts */
+  --gutter: clamp(1.15rem, 4.5vw, 4.5rem);
+
+  /* ══ ELEVATION ══ — restrained: hard offsets, no soft SaaS blur */
+  --radius-btn: 7px;
+  --shadow-hard: 5px 5px 0 var(--border-strong);
+  --shadow-card: 0 16px 34px -18px rgba(26, 26, 26, 0.5);
+  --shadow-paper: 6px 6px 0 rgba(26, 26, 26, 0.14);
 }
